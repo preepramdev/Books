@@ -30,6 +30,7 @@ class BookRepository private constructor() {
 
     suspend fun updateBook(book: BookModel): Boolean {
         val response = bookApiService.updateBook(book.bookId, book)
+        fetchBooksFromRemote()
         return response.isSuccessful
     }
 
