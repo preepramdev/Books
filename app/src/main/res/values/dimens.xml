@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_book_margin_bottom">4dp</dimen>
+    <dimen name="item_book_radius">4dp</dimen>
+    <dimen name="item_book_padding_all">8dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_padding">24dp</dimen>
+    <dimen name="list_side_margin">8dp</dimen>
+    <dimen name="dialog_width">250dp</dimen>
+</resources>

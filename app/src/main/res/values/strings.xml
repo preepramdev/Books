@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Books</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message_book_id">Id</string>
+    <string name="message_book_title">Title</string>
+    <string name="message_book_author">Author</string>
+    <string name="massage_book_pages">Pages</string>
+    <string name="message_add_book">Add Book</string>
+    <string name="message_cancel">Cancel</string>
+    <string name="book_page_holder">book\'s page</string>
+    <string name="book_author_holder">book\'s author</string>
+    <string name="book_title_holder">book\'s title</string>
+    <string name="book_id_holder">book\'s id</string>
+    <string name="message_update">Update</string>
+    <string name="message_remove">Remove</string>
+</resources>
