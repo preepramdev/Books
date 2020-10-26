@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pram.book.R
 import com.pram.book.data.model.BookModel
+import com.pram.book.databinding.ItemBookBinding
 import com.pram.book.view.widget.recycleview.viewholder.BookItemViewHolder
 
 class BookItemAdapter(private val itemModels: ArrayList<BookModel>) : RecyclerView.Adapter<BookItemViewHolder>() {
@@ -26,8 +27,8 @@ class BookItemAdapter(private val itemModels: ArrayList<BookModel>) : RecyclerVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_book, parent, false)
-        return BookItemViewHolder(view)
+        val binding = ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return BookItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
