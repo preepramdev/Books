@@ -74,11 +74,13 @@ class UpdateBookFragment : Fragment(), OneButtonDialogFragment.OnDialogListener 
     private fun observerViewModel() {
         viewModel.apply {
             book.observe(viewLifecycleOwner, { book ->
-                binding.apply {
-                    tvBookId.text = book.bookId
-                    edtBookTitle.setText(book.title)
-                    edtBookAuthor.setText(book.author)
-                    edtBookPages.setText(book.pages)
+                book?.let {
+                    binding.apply {
+                        tvBookId.text = book.bookId
+                        edtBookTitle.setText(book.title)
+                        edtBookAuthor.setText(book.author)
+                        edtBookPages.setText(book.pages)
+                    }
                 }
             })
 

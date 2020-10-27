@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pram.book.MainApplication
 import com.pram.book.data.model.BookModel
 import com.pram.book.data.repository.BookRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class UpdateBookViewModel() : ViewModel() {
-    private val bookRepository: BookRepository = BookRepository.getInstance()
+    @Inject
+    lateinit var bookRepository: BookRepository
 
     private val _book = MutableLiveData<BookModel>()
     private val _isUpdateBookDone = MutableLiveData<Boolean?>()
@@ -22,6 +25,7 @@ class UpdateBookViewModel() : ViewModel() {
         get() = _isUpdateBookDone
 
     init {
+        MainApplication.appComponent.inject(this)
         _isUpdateBookDone.value = null
     }
 

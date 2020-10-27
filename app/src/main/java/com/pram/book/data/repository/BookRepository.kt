@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BookRepository private constructor() {
+class BookRepository() {
     @Inject
     lateinit var bookApiService: BookApiService
     @Inject
@@ -65,18 +65,6 @@ class BookRepository private constructor() {
         GlobalScope.launch(Dispatchers.IO) {
             bookDao.removeBooks()
             bookDao.updateBooks(books)
-        }
-    }
-
-    companion object {
-        private var instance: BookRepository? = null
-
-        @Synchronized
-        fun getInstance(): BookRepository {
-            if (instance == null) {
-                instance = BookRepository()
-            }
-            return instance as BookRepository
         }
     }
 }
