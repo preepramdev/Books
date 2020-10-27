@@ -61,7 +61,7 @@ class TwoButtonDialogFragment : DialogFragment() {
     }
 
     private val onDialogListener: OnDialogListener?
-        private get() {
+        get() {
             val fragment = parentFragment
             try {
                 return if (fragment != null) {

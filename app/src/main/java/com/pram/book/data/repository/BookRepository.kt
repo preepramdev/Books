@@ -1,18 +1,24 @@
 package com.pram.book.data.repository
 
-import com.pram.book.data.api.ApiClient
+import com.pram.book.MainApplication
 import com.pram.book.data.api.service.BookApiService
-import com.pram.book.data.database.MainDatabaseManager
 import com.pram.book.data.database.dao.BookDao
 import com.pram.book.data.model.BookModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class BookRepository private constructor() {
-    private val bookApiService: BookApiService = ApiClient.getInstance().getBookApiService()
-    private val bookDao: BookDao = MainDatabaseManager.getMainDatabase().bookDao()
+    @Inject
+    lateinit var bookApiService: BookApiService
+    @Inject
+    lateinit var bookDao: BookDao
+
+    init {
+        MainApplication.appComponent.inject(this)
+    }
 
     fun getBooks(): Flow<List<BookModel>> {
         fetchBooksFromRemote()

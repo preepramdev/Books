@@ -6,6 +6,7 @@ buildscript {
     ext.roomVersion = '2.2.5'
     ext.navigationVersion = '2.3.0'
     ext.retrofitVersion = '2.9.0'
+    ext.daggerVersion = '2.29.1'
     repositories {
         google()
         jcenter()
