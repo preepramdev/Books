@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/item_book_margin_top"
     android:layout_marginBottom="@dimen/item_book_margin_bottom"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/book_item_bg"

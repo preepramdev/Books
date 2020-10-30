@@ -8,4 +8,5 @@
     <dimen name="card_padding">24dp</dimen>
     <dimen name="list_side_margin">8dp</dimen>
     <dimen name="dialog_width">250dp</dimen>
+    <dimen name="item_book_margin_top">4dp</dimen>
 </resources>
