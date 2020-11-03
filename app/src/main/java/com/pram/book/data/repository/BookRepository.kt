@@ -4,8 +4,8 @@ import com.pram.book.MainApplication
 import com.pram.book.data.api.service.BookApiService
 import com.pram.book.data.database.dao.BookDao
 import com.pram.book.data.model.BookModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -46,7 +46,7 @@ class BookRepository() {
     }
 
     private fun fetchBooksFromRemote() {
-        GlobalScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             val response = bookApiService.getBooks()
             if (response.isSuccessful) {
                 val books = response.body()
@@ -62,7 +62,7 @@ class BookRepository() {
     }
 
     private fun storeBookLocally(books: List<BookModel>) {
-        GlobalScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             bookDao.removeBooks()
             bookDao.updateBooks(books)
         }
