@@ -1,7 +1,7 @@
-package com.pram.book.data.api
+package com.pram.book.data.remote.api
 
 import com.pram.book.MainApplication
-import com.pram.book.data.api.service.BookApiService
+import com.pram.book.data.remote.api.service.BookApiService
 import javax.inject.Inject
 
 class ApiClient() {

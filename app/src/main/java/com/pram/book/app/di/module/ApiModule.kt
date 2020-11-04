@@ -2,9 +2,9 @@ package com.pram.book.app.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.pram.book.data.api.ApiClient
-import com.pram.book.data.api.ApiUrl
-import com.pram.book.data.api.service.BookApiService
+import com.pram.book.data.remote.api.ApiClient
+import com.pram.book.data.remote.api.ApiUrl
+import com.pram.book.data.remote.api.service.BookApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -27,10 +27,9 @@ class ApiModule {
 
     @Provides
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        val okHttpClient = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
-        return okHttpClient
     }
 
     @Provides

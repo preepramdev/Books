@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AddBookViewModel : ViewModel() {
+
     @Inject
     lateinit var bookRepository: BookRepository
 

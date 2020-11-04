@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -46,6 +47,13 @@ class BookListFragment : Fragment() {
         })
 
         binding.apply {
+            swRefreshBooks.apply {
+                setOnRefreshListener {
+                    viewModel.refreshBooks()
+                    isRefreshing = false
+                }
+            }
+
             rcvBooks.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = bookItemAdapter
@@ -64,11 +72,39 @@ class BookListFragment : Fragment() {
     }
 
     private fun observerViewModel() {
-        viewModel.books.observe(viewLifecycleOwner, { books ->
-            books?.let {
-                bookItemAdapter.updateItemModels(books)
-            }
-        })
+        viewModel.apply {
+            books.observe(viewLifecycleOwner, { books ->
+                books?.let {
+                    bookItemAdapter.updateItemModels(books)
+                }
+            })
+
+            isLoadFromRemote.observe(viewLifecycleOwner, { isLoadFromRemote ->
+                isLoadFromRemote?.let {
+                    if (isLoadFromRemote) {
+                        Toast.makeText(context, "Load from Remote", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Load from Local", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+
+            isLoading.observe(viewLifecycleOwner, { isLoading ->
+                isLoading?.let {
+                    if (isLoading) {
+                        binding.apply {
+                            rcvBooks.visibility = View.GONE
+                            progressLoading.visibility = View.VISIBLE
+                        }
+                    } else {
+                        binding.apply {
+                            rcvBooks.visibility = View.VISIBLE
+                            progressLoading.visibility = View.GONE
+                        }
+                    }
+                }
+            })
+        }
     }
 
     override fun onResume() {

@@ -18,6 +18,7 @@ data class BookModel(
     var author: String,
     var pages: String,
 ) : Parcelable {
+
     constructor(
         title: String,
         author: String,

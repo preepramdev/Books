@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.pram.book.databinding.DialogTwoButtonBinding
 
 class TwoButtonDialogFragment : DialogFragment() {
+
     private lateinit var binding: DialogTwoButtonBinding
     private var message: String? = null
     private var positive: String? = null

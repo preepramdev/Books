@@ -1,4 +1,4 @@
-package com.pram.book.data.database.dao
+package com.pram.book.data.local.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateBooks(bookModels: List<BookModel>)
 

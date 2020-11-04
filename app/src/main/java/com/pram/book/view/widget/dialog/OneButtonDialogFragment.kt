@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.pram.book.databinding.DialogOneButtonBinding
 
 class OneButtonDialogFragment : DialogFragment() {
+
     private lateinit var binding: DialogOneButtonBinding
     private var message: String? = null
     private var submit: String? = null

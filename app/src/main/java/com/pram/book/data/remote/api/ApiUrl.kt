@@ -1,4 +1,4 @@
-package com.pram.book.data.api
+package com.pram.book.data.remote.api
 
 class ApiUrl {
     companion object {

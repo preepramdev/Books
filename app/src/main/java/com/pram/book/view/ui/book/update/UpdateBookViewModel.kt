@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class UpdateBookViewModel() : ViewModel() {
+
     @Inject
     lateinit var bookRepository: BookRepository
 

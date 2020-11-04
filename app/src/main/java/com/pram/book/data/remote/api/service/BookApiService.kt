@@ -1,11 +1,11 @@
-package com.pram.book.data.api.service
+package com.pram.book.data.remote.api.service
 
 import com.pram.book.data.model.BookModel
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
 interface BookApiService {
+
     @GET("books")
     suspend fun getBooks(): Response<List<BookModel>>
 
