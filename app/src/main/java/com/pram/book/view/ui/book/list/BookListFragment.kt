@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.pram.book.R
 import com.pram.book.data.model.BookModel
 import com.pram.book.databinding.FragmentBookListBinding
@@ -76,16 +77,6 @@ class BookListFragment : Fragment() {
             books.observe(viewLifecycleOwner, { books ->
                 books?.let {
                     bookItemAdapter.updateItemModels(books)
-                }
-            })
-
-            isLoadFromRemote.observe(viewLifecycleOwner, { isLoadFromRemote ->
-                isLoadFromRemote?.let {
-                    if (isLoadFromRemote) {
-                        Toast.makeText(context, "Load from Remote", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "Load from Local", Toast.LENGTH_SHORT).show()
-                    }
                 }
             })
 

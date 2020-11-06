@@ -34,6 +34,7 @@ class BookRepository() {
 
     suspend fun addNewBook(book: BookModel): Boolean {
         val response = bookApiService.addNewBook(book)
+        fetchBooksFromRemote()
         return response.isSuccessful
     }
 
@@ -45,6 +46,7 @@ class BookRepository() {
 
     suspend fun removeBook(bookId: String): Boolean {
         val response = bookApiService.removeBook(bookId)
+        fetchBooksFromRemote()
         return response.isSuccessful
     }
 

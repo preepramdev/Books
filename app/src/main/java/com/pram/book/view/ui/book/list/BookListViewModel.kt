@@ -19,15 +19,10 @@ class BookListViewModel : ViewModel() {
 
     private val _books = MutableLiveData<List<BookModel>>()
 
-    private val _isLoadFromRemote = MutableLiveData<Boolean?>()
-
     private val _isLoading = MutableLiveData<Boolean>()
 
     val books: LiveData<List<BookModel>>
         get() = _books
-
-    val isLoadFromRemote: LiveData<Boolean?>
-        get() = _isLoadFromRemote
 
     val isLoading: LiveData<Boolean>
         get() = _isLoading
@@ -49,7 +44,6 @@ class BookListViewModel : ViewModel() {
                     }
                 }
             }
-            _isLoadFromRemote.value = false
         }
     }
 
@@ -65,7 +59,6 @@ class BookListViewModel : ViewModel() {
                     }
                 }
         }
-        _isLoadFromRemote.value = true
     }
 
     override fun onCleared() {
