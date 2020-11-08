@@ -41,6 +41,12 @@ class BookDetailFragment : Fragment(),
         viewModel.getBook(bookId)
 
         binding.apply {
+            swLoading.apply {
+                setOnRefreshListener {
+                    viewModel.refreshBook(bookId)
+                }
+            }
+
             btnUpdate.apply {
                 setOnClickListener {
                     this@BookDetailFragment.findNavController().navigate(
@@ -61,6 +67,12 @@ class BookDetailFragment : Fragment(),
 
     private fun observerViewModel() {
         viewModel.apply {
+            isLoading.observe(viewLifecycleOwner, { isLoading ->
+                isLoading?.let {
+                    binding.swLoading.isRefreshing = isLoading
+                }
+            })
+
             book.observe(viewLifecycleOwner, { book ->
                 book?.let {
                     binding.apply {

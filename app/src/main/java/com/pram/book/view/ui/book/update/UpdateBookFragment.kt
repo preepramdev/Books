@@ -51,6 +51,12 @@ class UpdateBookFragment : Fragment(), OneButtonDialogFragment.OnDialogListener 
         viewModel.getBook(bookId)
 
         binding.apply {
+            swLoading.apply {
+                setOnRefreshListener {
+                    viewModel.getBook(bookId)
+                }
+            }
+
             btnUpdate.apply {
                 setOnClickListener {
                     val newTitle = binding.edtBookTitle.text.toString()
@@ -81,6 +87,12 @@ class UpdateBookFragment : Fragment(), OneButtonDialogFragment.OnDialogListener 
                         edtBookAuthor.setText(book.author)
                         edtBookPages.setText(book.pages)
                     }
+                }
+            })
+
+            isLoading.observe(viewLifecycleOwner, { isLoading ->
+                isLoading?.let {
+                    binding.swLoading.isRefreshing = isLoading
                 }
             })
 

@@ -28,7 +28,10 @@ class BookRepository() {
         return retrieveBookLocally()
     }
 
-    fun getBook(bookId: String): Flow<BookModel?> {
+    fun getBook(bookId: String, remoteOnly: Boolean = false): Flow<BookModel?> {
+        if (remoteOnly) {
+            fetchBooksFromRemote()
+        }
         return bookDao.getBook(bookId)
     }
 

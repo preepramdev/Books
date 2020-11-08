@@ -45,6 +45,12 @@ class AddBookFragment : Fragment(), OneButtonDialogFragment.OnDialogListener {
         viewModel = ViewModelProvider(this).get(AddBookViewModel::class.java)
 
         binding.apply {
+            swLoading.apply {
+                setOnRefreshListener {
+                    isRefreshing = false
+                }
+            }
+
             btnAdd.apply {
                 setOnClickListener {
                     val title = binding.edtBookTitle.text.toString()
@@ -66,15 +72,23 @@ class AddBookFragment : Fragment(), OneButtonDialogFragment.OnDialogListener {
     }
 
     private fun observerViewModel() {
-        viewModel.isAddNewBookDone.observe(viewLifecycleOwner, { isAddNewBookDone ->
-            isAddNewBookDone?.let {
-                if (isAddNewBookDone) {
-                    callOneButtonDialog("Done", "Ok")
-                } else {
-                    callDismissOneButtonDialog("Something wrong", "Ok")
+        viewModel.apply {
+            isLoading.observe(viewLifecycleOwner, { isLoading ->
+                isLoading?.let {
+                    binding.swLoading.isRefreshing = isLoading
                 }
-            }
-        })
+            })
+
+            isAddNewBookDone.observe(viewLifecycleOwner, { isAddNewBookDone ->
+                isAddNewBookDone?.let {
+                    if (isAddNewBookDone) {
+                        callOneButtonDialog("Done", "Ok")
+                    } else {
+                        callDismissOneButtonDialog("Something wrong", "Ok")
+                    }
+                }
+            })
+        }
     }
 
     private fun exit() {

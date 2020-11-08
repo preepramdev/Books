@@ -15,7 +15,12 @@ class AddBookViewModel : ViewModel() {
     @Inject
     lateinit var bookRepository: BookRepository
 
+    private val _isLoading = MutableLiveData<Boolean>()
+
     private val _isAddNewBookDone = MutableLiveData<Boolean?>()
+
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
     val isAddNewBookDone: LiveData<Boolean?>
         get() = _isAddNewBookDone
@@ -26,9 +31,11 @@ class AddBookViewModel : ViewModel() {
     }
 
     fun addNewBook(title: String, author: String, pages: String) {
+        _isLoading.value = true
         viewModelScope.launch {
             val book = BookModel(title, author, pages)
             _isAddNewBookDone.value = bookRepository.addNewBook(book)
+            _isLoading.value = false
         }
     }
 

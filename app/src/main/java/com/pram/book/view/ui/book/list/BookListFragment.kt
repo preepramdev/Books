@@ -48,7 +48,7 @@ class BookListFragment : Fragment() {
         })
 
         binding.apply {
-            swRefreshBooks.apply {
+            swLoading.apply {
                 setOnRefreshListener {
                     viewModel.refreshBooks()
                     isRefreshing = false

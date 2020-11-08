@@ -5,6 +5,7 @@ import com.pram.book.MainApplication
 import com.pram.book.data.model.BookModel
 import com.pram.book.data.repository.BookRepository
 import com.pram.book.data.local.sharedpreferences.MainSharedPreferences
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject

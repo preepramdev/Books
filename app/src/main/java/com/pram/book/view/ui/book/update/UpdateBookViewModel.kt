@@ -17,10 +17,14 @@ class UpdateBookViewModel() : ViewModel() {
     lateinit var bookRepository: BookRepository
 
     private val _book = MutableLiveData<BookModel>()
+    private val _isLoading = MutableLiveData<Boolean>()
     private val _isUpdateBookDone = MutableLiveData<Boolean?>()
 
     val book: LiveData<BookModel>
         get() = _book
+
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
     val isUpdateBookDone: LiveData<Boolean?>
         get() = _isUpdateBookDone
@@ -31,16 +35,19 @@ class UpdateBookViewModel() : ViewModel() {
     }
 
     fun getBook(bookId: String) {
+        _isLoading.value = true
         viewModelScope.launch {
             bookRepository.getBook(bookId).collect { book ->
                 book.let {
                     _book.value = book
+                    _isLoading.value = false
                 }
             }
         }
     }
 
     fun updateBook(newTitle: String, newAuthor: String, newPages: String) {
+        _isLoading.value = true
         _book.value?.apply {
             title = newTitle
             author = newAuthor
@@ -49,6 +56,7 @@ class UpdateBookViewModel() : ViewModel() {
         viewModelScope.launch {
             _book.value?.let {
                 _isUpdateBookDone.value = bookRepository.updateBook(it)
+                _isLoading.value = false
             }
         }
     }
